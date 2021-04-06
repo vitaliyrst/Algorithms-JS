@@ -14,9 +14,9 @@ function map(arr, mapCallback) {
     }
 }
 
-let numbers = [2, 3, 5, 7];
-let newNumbers = map(numbers, (num) => {
+let mapNumbers = [2, 3, 5, 7];
+let mapped = map(mapNumbers, (num) => {
     return num * 2;
 });
 
-console.log(newNumbers);
+console.log('map|', mapped);
