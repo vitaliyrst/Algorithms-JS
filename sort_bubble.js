@@ -1,9 +1,9 @@
 function bubbleSort(items) {
     let length = items.length - 1;
 
-    for (let i = 0; i < length; i++) { // Выполняется для каждого элемента массива, кроме последнего.
+    for (let i = 0; i < length; i++) {
 
-        for (let j = 0; j < length - i; j++) { // Для всех последующих за текущим элементов
+        for (let j = 0; j < length - i; j++) { // Для всех кроме последнего
 
             if (items[j + 1] < items[j]) { // выполняется проверка, и если следующий элемент меньше текущего
                 let temp = items[j + 1];
