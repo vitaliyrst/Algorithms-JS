@@ -1,9 +1,8 @@
-// при условии, что мы имеем дело со смежным списком
-// например, таким: adj = {A: [B,C], B:[D,F], ... }
+//graph = {A: [B,C], B:[D,F], ... }
 
-let visited = [];
+let visitedDfs = [];
 
-function dfs(graph, v, t) {
+function dfs(graph, v, t, visited = []) {
     // graph - смежный список
     // v - посещенный узел (вершина)
     // t - пункт назначения
@@ -12,29 +11,31 @@ function dfs(graph, v, t) {
     if (v === t) {
         return true;
     }
-    if (v.visited) {
+    if (visited.includes(v)) {
         return false;
     }
 
     // помечаем узел как посещенный
-    v.visited = true;
     visited.push(v);
+
     // исследуем всех соседей (ближайшие соседние вершины) v
     for (let neighbor of graph[v]) {
         // если сосед не посещался
-        if (!neighbor.visited) {
+
+        if (!visited.includes(neighbor)) {
+            visitedDfs.push(neighbor);
             // двигаемся по пути и проверяем, не достигли ли мы пункта назначения
-            let reached = dfs(graph, neighbor, t)
+            let reached = dfs(graph, neighbor, t, visited);
             // если достигли
             if (reached) {
                 return 'Целевая точка найдена';
             }
         }
     }
-    return 'Целевая точка не найдена';
+    return false;
 }
 
-let graph = {
+let graphDfs = {
     'A': ['B', 'C', 'D'],
     'B': ['G', 'H'],
     'C': ['G'],
@@ -45,4 +46,4 @@ let graph = {
     'H': [],
 };
 
-console.log('dfs|', dfs(graph, 'A', 'F'), ' Путь:', visited);
+console.log('dfs|', dfs(graphDfs, 'A', 'F'), ' Путь:', visitedDfs);
