@@ -1,5 +1,6 @@
 function quickSort(items) {
     let length = items.length;
+
     if (length === 0) {
         return items;
     }
@@ -9,6 +10,7 @@ function quickSort(items) {
     let rightArray = [];
 
     for (let i = 1; i < length; i++) {
+
         if (items[i] <= referencePoint) {
             leftArray.push(items[i])
         } else {
